@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+
+    <title>Blog Demo</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+<body>
+  <header>
+
+      <h1>Postagens</h1>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+        
+        <div id="postList"></div>
+        <div id="pagination"></div>
+
+      <article id="newArticle">
+
+        <h2>Novo post</h2>
+
+        <form id="blogForm" action="#">
+
+          <label for="title">Título:</label>
+          <input type="text" id="title" name="title"><br>
+
+          <label for="content">Conteúdo:</label>
+
+          <textarea id="content" name="content"></textarea><br>
+
+          <button type="submit">Publicar</button>
+        </form>
+      </article>
+    </main>
+
+    <footer>
+      <p>&copy; 2023</p>
+    </footer>
+
+    <script type="text/javascript" src="js/index.js"></script> 
+
+  </body>
+</html>
