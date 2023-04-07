@@ -1,0 +1,125 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+article {
+    background-color: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+a:hover {
+    color: #666;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styles for the form input fields */
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form input[type="text"],
+form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+    background-color: #666;
+}
+
+/* Styles for the pagination links */
+div.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+div.pagination a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #eee;
+    color: #333;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+div.pagination a:hover {
+    background-color: #ccc;
+}
+
+div.pagination a.active {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #333;
+}
