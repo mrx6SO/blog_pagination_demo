@@ -195,16 +195,16 @@ function editPost(index) {
   contentElement.classList.add('editing');
 
   // adiciona evento blur para salvar as alterações
-  titleElement.addEventListener('mouseleave', function() {
+  titleElement.addEventListener('blur', function() {
     post.title = titleElement.textContent;
     savePosts();
     titleElement.contentEditable = false;
     titleElement.classList.remove('editing');
   });
 
-  contentElement.addEventListener('mouseleave', function() {
+  contentElement.addEventListener('blur', function() {
     post.content = contentElement.textContent;
-    alert("Post editado.");
+    //alert("Post editado.");
     savePosts();
       contentElement.contentEditable = false;
 
