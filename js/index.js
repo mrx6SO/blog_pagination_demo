@@ -59,13 +59,7 @@ function displayPosts() {
 
   pagination.innerHTML = paginationHTML;
 
-  // Desabilita o botão "Página anterior" se estiver na primeira página
-  const prevButton = document.getElementById("prevButton");
-  prevButton.disabled = currentPage === 1;
 
-  // Desabilita o botão "Próxima página" se estiver na última página
-  const nextButton = document.getElementById("nextButton");
-  nextButton.disabled = currentPage === totalPages;
 }
 
 //função para limpar os campos de entrada
@@ -108,6 +102,14 @@ currentPage++;
 displayPosts();
 }
 });
+  // Desabilita o botão "Página anterior" se estiver na primeira página
+  //const prevButton = document.getElementById("prevButton");
+  prevButton.disabled = currentPage === 1;
 
+  // Desabilita o botão "Próxima página" se estiver na última página
+  //const nextButton = document.getElementById("nextButton");
+  nextButton.disabled = currentPage === totalPages;
 // Exibe as postagens ao carregar a página
-displayPosts();
+window.addEventListener('load', () => {
+  displayPosts();
+});
