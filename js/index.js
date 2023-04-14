@@ -97,14 +97,16 @@ if (prevButton) {
 
 
 const nextButton = document.getElementById("nextButton");
-nextButton.addEventListener("click", function() {
-const posts = JSON.parse(localStorage.getItem("posts")) || [];
-const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-if (currentPage < totalPages) {
-currentPage++;
-displayPosts();
-}
-});
+if (nextButton) {
+  nextButton.addEventListener("click", function() {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayPosts();
+        }
+      });
+  }
   // Desabilita o botão "Página anterior" se estiver na primeira página
   //const prevButton = document.getElementById("prevButton");
   prevButton.disabled = currentPage === 1;
@@ -112,5 +114,3 @@ displayPosts();
   // Desabilita o botão "Próxima página" se estiver na última página
   //const nextButton = document.getElementById("nextButton");
   nextButton.disabled = currentPage === totalPages;
-// Exibe as postagens ao carregar a página
-window.onload = displayPosts;
