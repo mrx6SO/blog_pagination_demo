@@ -50,7 +50,7 @@ function displayPosts() {
     postHTML += `<article>
       <h2>${post.title}</h2>
       <p>${post.content}</p>
-      <button class="btn btn-primary" id="edit_post_${i}" onclick="editPost(${i}, '${post.title}', '${post.content}')">Editar</button>
+      <button class="btn btn-primary" id="edit_post_${i}" onclick="editPost(${i})">Editar</button>
       <button class="btn btn-primary" id="delete_post_${i}" onclick="deletePost(${i})">Excluir</button>
     </article>`;
 }
@@ -195,15 +195,19 @@ function editPost(index) {
   contentElement.classList.add('editing');
 
   // adiciona evento blur para salvar as alterações
-  titleElement.addEventListener('blur', function() {
+  titleElement.addEventListener('mouseleave', function() {
     post.title = titleElement.textContent;
     savePosts();
+    titleElement.contentEditable = false;
     titleElement.classList.remove('editing');
   });
 
-  contentElement.addEventListener('blur', function() {
+  contentElement.addEventListener('mouseleave', function() {
     post.content = contentElement.textContent;
+    alert("Post editado.");
     savePosts();
+      contentElement.contentEditable = false;
+
     contentElement.classList.remove('editing');
   });
 }
