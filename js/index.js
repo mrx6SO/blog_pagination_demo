@@ -119,3 +119,25 @@ if (prevButton) {
 if (nextButton) {
   nextButton.disabled = currentPage === totalPages;
 }
+
+// Função para editar uma postagem existente
+function editPost(index, title, content) {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  if (index >= 0 && index < posts.length) {
+    const post = posts[index];
+    post.title = title;
+    post.content = content;
+    localStorage.setItem("posts", JSON.stringify(posts));
+    displayPosts();
+  }
+}
+
+// Função para excluir uma postagem existente
+function deletePost(index) {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  if (index >= 0 && index < posts.length) {
+    posts.splice(index, 1);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    displayPosts();
+  }
+}
