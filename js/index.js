@@ -11,6 +11,7 @@ let currentPage = 1;
 function addPost(title, content) {
   // Cria um objeto com as informações da nova postagem
   const post = {
+    id: post_id,
     title: title,
     content: content
   };
@@ -40,13 +41,16 @@ function displayPosts() {
 
   // Cria o HTML para as postagens da página atual e adiciona ao elemento na página
   let postHTML = "";
-  for (let i = firstPostIndex; i <= lastPostIndex && i < posts.length; i++) {
+ for (let i = firstPostIndex; i <= lastPostIndex && i < posts.length; i++) {
     const post = posts[i];
     postHTML += `<article>
       <h2>${post.title}</h2>
       <p>${post.content}</p>
+      <button onclick="editPost(${i}, '${post.title}', '${post.content}')">Editar</button>
+      <button onclick="deletePost(${i})">Excluir</button>
     </article>`;
-  }
+}
+
   postList.innerHTML = postHTML;
 
   // Cria os botões de páginação
@@ -72,13 +76,36 @@ function clearForm() {
   document.getElementById("content").value = "";
 }
 */
-const form = document.querySelector("#blogForm");
+/*const form = document.querySelector("#blogForm");
 form.addEventListener("submit", function(event) {
 event.preventDefault();
 const title = document.getElementById("title").value;
 const content = document.getElementById("content").value;
 addPost(title, content);
 form.reset();
+});
+*/
+document.getElementById("blogForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // previne o comportamento padrão do formulário de recarregar a página
+
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+
+  const post = {
+    id: generatePostId(), // gera um novo ID de postagem automaticamente
+    title: title,
+    content: content
+  };
+
+  // adiciona a nova postagem ao localStorage
+  addPost(post);
+
+  // limpa os campos do formulário
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
+
+  // atualiza a exibição das postagens na página
+  displayPosts();
 });
 
 // Função para ir para uma página específica
@@ -118,6 +145,22 @@ if (prevButton) {
 // Desabilita o botão "Próxima página" se estiver na última página
 if (nextButton) {
   nextButton.disabled = currentPage === totalPages;
+}
+
+function generatePostId() {
+  // Gera um número aleatório de 1 a 1000000
+  const randomId = Math.floor(Math.random() * 1000000) + 1;
+
+  // Verifica se o número já foi utilizado como ID
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  const usedIds = posts.map(post => post.id);
+  if (usedIds.includes(randomId)) {
+    // Se o número já foi utilizado, gera um novo ID
+    return generatePostId();
+  } else {
+    // Se o número não foi utilizado, retorna o ID
+    return randomId;
+  }
 }
 
 // Função para editar uma postagem existente
