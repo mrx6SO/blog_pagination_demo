@@ -14,7 +14,7 @@ let currentPage = 1;
 function addPost(title, content) {
   // Cria um objeto com as informações da nova postagem
   const post = {
-    id: post_id,
+    //id: post_id,
     title: title,
     content: content
   };
@@ -43,14 +43,17 @@ function displayPosts() {
   const lastPostIndex = firstPostIndex + POSTS_PER_PAGE - 1;
 
   // Cria o HTML para as postagens da página atual e adiciona ao elemento na página
-const postHTML = posts.slice(firstPostIndex, lastPostIndex + 1).map((post, i) => `
-  <article>
-    <h2>${post.title}</h2>
-    <p>${post.content}</p>
-    <button class="btn btn-primary" id="edit_post_${firstPostIndex + i}" onclick="editPost(${firstPostIndex + i}, '${post.title}', '${post.content}')">Editar</button>
-    <button class="btn btn-primary" id="delete_post_${firstPostIndex + i}" onclick="deletePost(${firstPostIndex + i})">Excluir</button>
-  </article>
-`).join('');
+  // Cria o HTML para as postagens da página atual e adiciona ao elemento na página
+  let postHTML = "";
+  for (let i = firstPostIndex; i <= lastPostIndex && i < posts.length; i++) {
+    const post = posts[i];
+    postHTML += `<article>
+      <h2>${post.title}</h2>
+      <p>${post.content}</p>
+      <button class="btn btn-primary" id="edit_post_${i}" onclick="editPost(${i}, '${post.title}', '${post.content}')">Editar</button>
+      <button class="btn btn-primary" id="delete_post_${i}" onclick="deletePost(${i})">Excluir</button>
+    </article>`;
+}
 
 postList.innerHTML = postHTML;
 
@@ -78,7 +81,7 @@ function clearForm() {
   document.getElementById("content").value = "";
 }
 */
-/*const form = document.querySelector("#blogForm");
+const form = document.querySelector("#blogForm");
 form.addEventListener("submit", function(event) {
 event.preventDefault();
 const title = document.getElementById("title").value;
@@ -86,8 +89,8 @@ const content = document.getElementById("content").value;
 addPost(title, content);
 form.reset();
 });
-*/
-document.getElementById("blogForm").addEventListener("submit", function(event) {
+
+/*document.getElementById("blogForm").addEventListener("submit", function(event) {
   event.preventDefault(); // previne o comportamento padrão do formulário de recarregar a página
 
   const title = document.getElementById("title").value;
@@ -109,7 +112,7 @@ document.getElementById("blogForm").addEventListener("submit", function(event) {
   // atualiza a exibição das postagens na página
   displayPosts();
 });
-
+*/
 // Função para ir para uma página específica
 function goToPage(pageNumber) {
 currentPage = pageNumber;
