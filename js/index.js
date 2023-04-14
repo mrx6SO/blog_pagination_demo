@@ -1,3 +1,6 @@
+// Exibe as postagens ao carregar a página
+window.onload = displayPosts;
+
 // Define o número de postagens por página
 const POSTS_PER_PAGE = 5;
 
