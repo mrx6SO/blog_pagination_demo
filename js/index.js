@@ -169,7 +169,7 @@ function generatePostId() {
 }
 
 // Função para editar uma postagem existente
-function editPost(index, title, content) {
+/*function editPost(index, title, content) {
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
   if (index >= 0 && index < posts.length) {
     const post = posts[index];
@@ -178,6 +178,40 @@ function editPost(index, title, content) {
     localStorage.setItem("posts", JSON.stringify(posts));
     displayPosts();
   }
+}*/
+
+function editPost(index) {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  const post = posts[index];
+  const titleElement = document.querySelector(`#edit_post_${index} , h2`);
+  const contentElement = document.querySelector(`#edit_post_${index} , p`);
+  
+  // torna os elementos editáveis
+  titleElement.contentEditable = true;
+  contentElement.contentEditable = true;
+  
+  // adiciona classe para indicar que o post está sendo editado
+  titleElement.classList.add('editing');
+  contentElement.classList.add('editing');
+
+  // adiciona evento blur para salvar as alterações
+  titleElement.addEventListener('blur', function() {
+    post.title = titleElement.textContent;
+    savePosts();
+    titleElement.classList.remove('editing');
+  });
+
+  contentElement.addEventListener('blur', function() {
+    post.content = contentElement.textContent;
+    savePosts();
+    contentElement.classList.remove('editing');
+  });
+}
+
+
+function savePosts() {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  localStorage.setItem("posts", JSON.stringify(posts));
 }
 
 // Função para excluir uma postagem existente
