@@ -1,5 +1,8 @@
 // Exibe as postagens ao carregar a página
-window.onload = displayPosts;
+//window.onload = displayPosts;
+document.addEventListener("DOMContentLoaded", function() {
+  displayPosts();
+});
 
 // Define o número de postagens por página
 const POSTS_PER_PAGE = 5;
@@ -40,18 +43,17 @@ function displayPosts() {
   const lastPostIndex = firstPostIndex + POSTS_PER_PAGE - 1;
 
   // Cria o HTML para as postagens da página atual e adiciona ao elemento na página
-  let postHTML = "";
- for (let i = firstPostIndex; i <= lastPostIndex && i < posts.length; i++) {
-    const post = posts[i];
-    postHTML += `<article>
-      <h2>${post.title}</h2>
-      <p>${post.content}</p>
-      <button onclick="editPost(${i}, '${post.title}', '${post.content}')">Editar</button>
-      <button onclick="deletePost(${i})">Excluir</button>
-    </article>`;
-}
+const postHTML = posts.slice(firstPostIndex, lastPostIndex + 1).map((post, i) => `
+  <article>
+    <h2>${post.title}</h2>
+    <p>${post.content}</p>
+    <button class="btn btn-primary" id="edit_post_${firstPostIndex + i}" onclick="editPost(${firstPostIndex + i}, '${post.title}', '${post.content}')">Editar</button>
+    <button class="btn btn-primary" id="delete_post_${firstPostIndex + i}" onclick="deletePost(${firstPostIndex + i})">Excluir</button>
+  </article>
+`).join('');
 
-  postList.innerHTML = postHTML;
+postList.innerHTML = postHTML;
+
 
   // Cria os botões de páginação
   const pagination = document.getElementById("pagination");
