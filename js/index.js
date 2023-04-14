@@ -110,10 +110,12 @@ if (nextButton) {
         }
       });
   }
-  // Desabilita o botão "Página anterior" se estiver na primeira página
-  //const prevButton = document.getElementById("prevButton");
+ // Desabilita o botão "Página anterior" se estiver na primeira página
+if (prevButton) {
   prevButton.disabled = currentPage === 1;
+}
 
-  // Desabilita o botão "Próxima página" se estiver na última página
-  //const nextButton = document.getElementById("nextButton");
+// Desabilita o botão "Próxima página" se estiver na última página
+if (nextButton) {
   nextButton.disabled = currentPage === totalPages;
+}
