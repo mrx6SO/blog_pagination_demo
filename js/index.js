@@ -86,12 +86,15 @@ displayPosts();
 
 // Adiciona listeners para os botões de páginação
 const prevButton = document.getElementById("prevButton");
-prevButton.addEventListener("click", function() {
-if (currentPage > 1) {
-currentPage--;
-displayPosts();
+if (prevButton) {
+  prevButton.addEventListener("click", function() {
+    if (currentPage > 1) {
+      currentPage--;
+      displayPosts();
+    }
+  });
 }
-});
+
 
 const nextButton = document.getElementById("nextButton");
 nextButton.addEventListener("click", function() {
@@ -110,6 +113,4 @@ displayPosts();
   //const nextButton = document.getElementById("nextButton");
   nextButton.disabled = currentPage === totalPages;
 // Exibe as postagens ao carregar a página
-window.addEventListener('DOMContentLoaded', () => {
-  displayPosts();
-});
+window.onload = displayPosts;
