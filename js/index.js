@@ -110,6 +110,6 @@ displayPosts();
   //const nextButton = document.getElementById("nextButton");
   nextButton.disabled = currentPage === totalPages;
 // Exibe as postagens ao carregar a página
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   displayPosts();
 });
